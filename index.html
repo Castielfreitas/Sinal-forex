@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinais Forex - Powered by Manus AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="bg-dark text-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <span class="brand-name">ForexSignals</span>
+                        <span class="brand-subtitle">Powered by Manus AI</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#sinais">Sinais</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sobre">Sobre</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#como-funciona">Como Funciona</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero-section bg-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">Sinais de Compra e Venda em Forex</h1>
+            <p class="lead mt-3">Baseados em Machine Learning e Inteligência Artificial da Manus</p>
+        </div>
+    </section>
+
+    <!-- Seção de Sinais -->
+    <section id="sinais" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-4">Sinais Atuais</h2>
+            
+            <!-- Filtros -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <label for="selectPair" class="form-label">Escolher Ativo:</label>
+                    <select id="selectPair" class="form-select">
+                        <option value="all">Todos os Pares</option>
+                        <option value="EUR/USD">EUR/USD</option>
+                        <option value="USD/JPY">USD/JPY</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="USD/CHF">USD/CHF</option>
+                        <option value="AUD/USD">AUD/USD</option>
+                        <option value="USD/CAD">USD/CAD</option>
+                        <option value="NZD/USD">NZD/USD</option>
+                        <option value="USD/BRL">USD/BRL</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="selectTimeframe" class="form-label">Timeframe:</label>
+                    <select id="selectTimeframe" class="form-select">
+                        <option value="M1">1 Minuto (M1)</option>
+                        <option value="M5">5 Minutos (M5)</option>
+                        <option value="M15">15 Minutos (M15)</option>
+                        <option value="M30">30 Minutos (M30)</option>
+                        <option value="H1">1 Hora (H1)</option>
+                        <option value="H4">4 Horas (H4)</option>
+                        <option value="D1" selected>Diário (D1)</option>
+                        <option value="W1">Semanal (W1)</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end mb-3">
+                    <button id="btnUpdate" class="btn btn-primary">
+                        <i class="fas fa-sync-alt me-2"></i>Atualizar
+                    </button>
+                </div>
+                <div class="col-md-3 d-flex align-items-end justify-content-end mb-3">
+                    <div class="last-update">
+                        Última atualização: <span id="lastUpdateTime">--:--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards de Sinais -->
+            <div id="signalsContainer" class="row">
+                <!-- Os cards de sinais serão inseridos aqui via JavaScript -->
+                <div class="col-md-4 mb-4">
+                    <div class="card signal-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">EUR/USD</h5>
+                            <span class="badge bg-secondary">Diário</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="signal-badge buy">COMPRA</div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p class="signal-label">Preço Atual</p>
+                                    <p class="signal-value">1.2331</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="signal-label">Probabilidade</p>
+                                    <p class="signal-value">87.2%</p>
+                                </div>
+                            </div>
+                            <div class="signal-time mt-2">10/04 08:49</div>
+                            <a href="#" class="btn btn-outline-primary btn-sm mt-3 w-100">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card signal-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">USD/JPY</h5>
+                            <span class="badge bg-secondary">Diário</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="signal-badge sell">VENDA</div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p class="signal-label">Preço Atual</p>
+                                    <p class="signal-value">109.4856</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="signal-label">Probabilidade</p>
+                                    <p class="signal-value">70.7%</p>
+                                </div>
+                            </div>
+                            <div class="signal-time mt-2">10/04 08:58</div>
+                            <a href="#" class="btn btn-outline-primary btn-sm mt-3 w-100">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card signal-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">USD/CHF</h5>
+                            <span class="badge bg-secondary">Diário</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="signal-badge neutral">NEUTRO</div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p class="signal-label">Preço Atual</p>
+                                    <p class="signal-value">0.9251</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="signal-label">Probabilidade</p>
+                                    <p class="signal-value">55.0%</p>
+                                </div>
+                            </div>
+                            <div class="signal-time mt-2">10/04 08:50</div>
+                            <a href="#" class="btn btn-outline-primary btn-sm mt-3 w-100">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botão de Histórico -->
+            <div class="text-center mt-4">
+                <a href="#" id="btnHistory" class="btn btn-primary">
+                    <i class="fas fa-chart-line me-2"></i>Ver Histórico de Acertos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre o Sistema -->
+    <section id="sobre" class="py-5 bg-dark text-white">
+        <div class="container">
+            <h2 class="section-title mb-4">Sobre o Sistema</h2>
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="lead">O sistema de sinais Forex utiliza modelos avançados de machine learning treinados com dados reais do mercado, combinados com a inteligência artificial da Manus para gerar sinais precisos de compra e venda.</p>
+                    
+                    <p>Nossa tecnologia analisa múltiplos indicadores técnicos, padrões de mercado e fatores fundamentais para identificar as melhores oportunidades de negociação com alta probabilidade de acerto.</p>
+                    
+                    <p>Os sinais são atualizados em tempo real e incluem informações detalhadas sobre a análise, permitindo que você tome decisões informadas sobre suas operações no mercado Forex.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-value">85%</div>
+                                <div class="stat-label">Precisão Média</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Pares de Moedas</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="stat-card">
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Monitoramento</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section id="como-funciona" class="py-5">
+        <div class="container">
+            <h2 class="section-title mb-5">Como Funciona</h2>
+            
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-title">Coleta de Dados</h3>
+                    <p>Nosso sistema coleta dados históricos e em tempo real de múltiplas fontes para alimentar os modelos de machine learning.</p>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Análise por Machine Learning</h3>
+                    <p>Algoritmos avançados de ML analisam padrões e indicadores técnicos para identificar potenciais movimentos de mercado.</p>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">Inteligência Manus</h3>
+                    <p>A IA da Manus analisa fatores fundamentais, sentimento de mercado e eventos econômicos para complementar a análise técnica.</p>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Geração de Sinais</h3>
+                    <p>Os resultados são combinados para gerar sinais precisos de compra ou venda com probabilidades de acerto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>ForexSignals</h5>
+                    <p class="text-muted">Powered by Manus AI</p>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#sinais" class="text-white">Sinais</a></li>
+                        <li><a href="#sobre" class="text-white">Sobre</a></li>
+                        <li><a href="#como-funciona" class="text-white">Como Funciona</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4">
+                    <h5>Aviso Legal</h5>
+                    <p class="small">Os sinais fornecidos são baseados em análises técnicas e não garantem resultados. Opere com responsabilidade e esteja ciente dos riscos do mercado Forex.</p>
+                </div>
+            </div>
+            
+            <hr class="mt-3 mb-3">
+            
+            <div class="text-center">
+                <p class="small mb-0">© 2025 ForexSignals. Todos os direitos reservados.</p>
+                <p class="small">Made with <i class="fas fa-heart text-danger"></i> by Manus</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Detalhes do Sinal -->
+    <div class="modal fade" id="signalDetailsModal" tabindex="-1" aria-labelledby="signalDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signalDetailsModalLabel">Detalhes do Sinal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Informações do Sinal</h6>
+                            <table class="table">
+                                <tr>
+                                    <th>Par</th>
+                                    <td id="modalPair">EUR/USD</td>
+                                </tr>
+                                <tr>
+                                    <th>Timeframe</th>
+                                    <td id="modalTimeframe">Diário</td>
+                                </tr>
+                                <tr>
+                                    <th>Sinal</th>
+                                    <td id="modalSignal"><span class="badge bg-success">COMPRA</span></td>
+                                </tr>
+                                <tr>
+                                    <th>Preço Atual</th>
+                                    <td id="modalPrice">1.2331</td>
+                                </tr>
+                                <tr>
+                                    <th>Probabilidade</th>
+                                    <td id="modalProbability">87.2%</td>
+                                </tr>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <td id="modalTimestamp">10/04/2025 08:49</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Análise de Sentimento</h6>
+                            <div id="sentimentChart" style="height: 200px;"></div>
+                            
+                            <h6 class="mt-4">Eventos Econômicos Relevantes</h6>
+                            <ul id="economicEvents" class="list-group">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Decisão de Taxa de Juros do Fed</span>
+                                        <span class="badge bg-danger">Alto Impacto</span>
+                                    </div>
+                                    <small class="text-muted">15/04/2025</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Relatório de Emprego (Non-Farm Payrolls)</span>
+                                        <span class="badge bg-danger">Alto Impacto</span>
+                                    </div>
+                                    <small class="text-muted">12/04/2025</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h6>Indicadores Técnicos</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Indicador</th>
+                                            <th>Valor</th>
+                                            <th>Sinal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="technicalIndicators">
+                                        <tr>
+                                            <td>RSI (14)</td>
+                                            <td>65.8</td>
+                                            <td><span class="badge bg-success">Compra</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>MACD</td>
+                                            <td>0.0023</td>
+                                            <td><span class="badge bg-success">Compra</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Média Móvel (20)</td>
+                                            <td>1.2315</td>
+                                            <td><span class="badge bg-success">Compra</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bandas de Bollinger</td>
+                                            <td>Banda Superior: 1.2380</td>
+                                            <td><span class="badge bg-warning text-dark">Neutro</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Histórico de Acertos -->
+    <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="historyModalLabel">Histórico de Acertos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <select id="historyPairSelect" class="form-select">
+                                <option value="all">Todos os Pares</option>
+                                <option value="EUR/USD">EUR/USD</option>
+                                <option value="USD/JPY">USD/JPY</option>
+                                <option value="GBP/USD">GBP/USD</option>
+                                <option value="USD/CHF">USD/CHF</option>
+                                <option value="AUD/USD">AUD/USD</option>
+                                <option value="USD/CAD">USD/CAD</option>
+                                <option value="NZD/USD">NZD/USD</option>
+                                <option value="USD/BRL">USD/BRL</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select id="historyTimeframeSelect" class="form-select">
+                                <option value="all">Todos os Timeframes</option>
+                                <option value="M1">1 Minuto (M1)</option>
+                                <option value="M5">5 Minutos (M5)</option>
+                                <option value="M15">15 Minutos (M15)</option>
+                                <option value="M30">30 Minutos (M30)</option>
+                                <option value="H1">1 Hora (H1)</option>
+                                <option value="H4">4 Horas (H4)</option>
+                                <option value="D1">Diário (D1)</option>
+                                <option value="W1">Semanal (W1)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h3 class="text-success" id="successRate">85%</h3>
+                                    <p class="mb-0">Taxa de Acerto</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h3 id="totalSignals">120</h3>
+                                    <p class="mb-0">Sinais Totais</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h3 id="verifiedSignals">105</h3>
+                                    <p class="mb-0">Sinais Verificados</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <th>Par</th>
+                                    <th>Timeframe</th>
+                                    <th>Sinal</th>
+                                    <th>Preço</th>
+                                    <th>Probabilidade</th>
+                                    <th>Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <tr>
+                                    <td>09/04/2025 14:30</td>
+                                    <td>EUR/USD</td>
+                                    <td>D1</td>
+                                    <td><span class="badge bg-success">COMPRA</span></td>
+                                    <td>1.2315</td>
+                                    <td>82.5%</td>
+                                    <td><span class="badge bg-success">Acerto</span></td>
+                                </tr>
+                                <tr>
+                                    <td>09/04/2025 10:15</td>
+                                    <td>USD/JPY</td>
+                                    <td>D1</td>
+                                    <td><span class="badge bg-danger">VENDA</span></td>
+                                    <td>109.5230</td>
+                                    <td>75.8%</td>
+                                    <td><span class="badge bg-success">Acerto</span></td>
+                                </tr>
+                                <tr>
+                                    <td>08/04/2025 16:45</td>
+                                    <td>GBP/USD</td>
+                                    <td>D1</td>
+                                    <td><span class="badge bg-success">COMPRA</span></td>
+                                    <td>1.3840</td>
+                                    <td>68.3%</td>
+                                    <td><span class="badge bg-danger">Erro</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
